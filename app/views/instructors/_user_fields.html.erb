@@ -1,0 +1,8 @@
+<div class="fields">
+  <%= f.input :username, label: "Username" %>
+  <%= f.input :password, label: "Password" if action == "new" || action=="create" || @instructor.user.username.nil? || (current_user.role? :admin) %>
+  <%= f.input :password_confirmation, label: "Confirm Password" if action=="new" || action=="create" || @instructor.user.username.blank? || (current_user.role? :admin) %>
+  <% if current_user.role? :admin %>
+	  <%= f.input :role, label: "Role", collection: User::ROLES, prompt: "Choose role..." %>
+  <% end %>
+</div>

@@ -1,0 +1,14 @@
+<% unless @upcoming_camps.empty? %>
+  <div class="panel clearfix">
+    <h4>Upcoming Camps</h4>
+    <ul class="side-nav">
+      <% @upcoming_camps.each do |camp| %>
+        <li><%= link_to "#{camp.name + ': ' + camp.start_date.strftime('%m/%d/%y') + " (" + camp.time_slot+")"}", camp_path(camp) %></li>
+      <% end %>
+      <%= render partial: "partials/add_pagination", locals: {objects: @upcoming_camps} %>
+    </ul>
+  </div>
+
+<% else %>
+	<p>No upcoming assigned camps yet.</p>
+<% end %>

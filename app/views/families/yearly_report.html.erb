@@ -1,0 +1,41 @@
+<h2>Report for <%= @family.family_name %> Family in <%= @year %></h2>
+
+<table>
+	<thead>
+		<th width="200">Student Name</th>
+		<th width="250">Camp</th>
+		<th width="170">Payment Recieved</th>
+		<th width="170">Balance Due</th>
+	</thead>
+	<tbody>
+		<% total_paid = 0 %>
+		<% amount_due = 0 %>
+		<% @registrations_in_year.each do |registration| %>
+		<tr>
+			<td><%= link_to registration.student.proper_name, student_path(registration.student) %></td>
+			
+			<% camp = registration.camp %>
+
+			<td><%= link_to "#{camp.name + " (" + camp.start_date.strftime('%m/%d/%y') + ")"}", camp_path(camp) %></td>
+			
+			<% if registration.payment_status == 'deposit' %>
+				<% total_paid += 50 %>
+				<% amount_due += camp.cost - 50 %>
+				<td align="center"><%= number_to_currency(50) %></td>
+				<td align="center"><%= number_to_currency(camp.cost - 50) %></td>
+			<% else %>
+				<% total_paid += camp.cost %>
+				<td align="center"><%= number_to_currency(camp.cost) %></td>
+				<td align="center"><%= number_to_currency(0) %></td>
+			<% end %>
+		</tr>
+		<% end %>
+		<tr>
+			<td><strong>Total</strong></td>
+			<td></td>
+			<td align="center"><strong><%= number_to_currency(total_paid) %></strong></td>
+			<td align="center"><strong><%= number_to_currency(amount_due) %></strong></td>
+		</tr>
+	</tbody>
+
+</table>

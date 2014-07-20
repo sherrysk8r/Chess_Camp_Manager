@@ -1,0 +1,12 @@
+<%= render partial: "partials/show_structure", locals: {primary: "camp_details",
+														primary_locals: nil,
+                                                        sidebar: "sidebar"} %>
+
+<div class="options">
+	<% if @camp.registrations.size.zero? %>
+		<%= render partial: "partials/object_options", locals: {model_name: "camp", object: @camp, can_destroy: true} %>
+	<% else %>
+		<%= render partial: "partials/object_options", locals: {model_name: "camp", object: @camp, can_destroy: false} %>
+	<% end %>
+</div>
+

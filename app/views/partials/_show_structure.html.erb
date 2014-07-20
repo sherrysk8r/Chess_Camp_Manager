@@ -1,0 +1,18 @@
+<!-- This one includes a 1-column space between main and sidebar -->
+<div class="row">
+  <div class="small-7 columns">
+    <% if primary_locals.nil? %>
+      <%= render partial: "#{primary}" %>
+    <% else %>
+      <%= render partial: "#{primary}", locals: primary_locals %>
+    <% end %>
+  </div>
+
+  <div class="small-1 columns">
+    &nbsp;
+  </div>
+
+  <div class="small-4 columns">
+    <%= render partial: "#{sidebar}" unless sidebar.nil? %>
+  </div>
+</div>

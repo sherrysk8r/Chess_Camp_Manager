@@ -1,0 +1,9 @@
+<% if logged_in? %> 
+	<% if current_user.role?(:instructor) %>
+		<%= render partial: "instructor" %>
+	<% else %>
+		<%= render partial: "admin" %>
+	<% end %>
+<% else %>
+	<%= render partial: "guest" %>
+<% end %>

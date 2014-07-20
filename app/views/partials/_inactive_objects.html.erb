@@ -1,0 +1,11 @@
+<% unless objects.empty? %>
+  <div class="panel clearfix">
+    <h5>Inactive <%="#{model_name.pluralize.capitalize}" %>
+    </h5>
+    <ul class="side-nav">
+      <% objects.each do |object| %>
+        <li><%= link_to object.name, eval("#{model_name}_path(object)") %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

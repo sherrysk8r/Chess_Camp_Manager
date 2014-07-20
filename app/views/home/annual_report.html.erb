@@ -1,0 +1,33 @@
+<div class="row">
+	<div class="small-7 columns" >
+		<h2 id="top">Annual Camp Payment Report for <%= @year %></h2>
+		<% @annual_paid = 0 %>
+		<% @annual_due = 0 %>
+
+		<% @camps_in_year.each do |c| %>
+			<div>
+				<%= render partial: "partials/single_camp_report", locals: {camp: c} %>
+				<% @annual_paid+= @total_paid %>
+				<% @annual_due += @amount_due %>
+			</div>
+		<% end %>
+		<a href="#top" class="button radius">Back to Top</a>
+	</div>
+	<div class="small-1 columns"> 
+		&nbsp;
+	</div>
+
+	<div class="small-4 columns panel clearfix">
+		<h3>Summary</h3>
+		<strong>Total Payments Recieved: </strong>
+		<%= number_to_currency(@annual_paid) %><br /><br />
+		<strong>Total Balances Due: </strong>
+		<%= number_to_currency(@annual_due) %><br /><br />
+		<em>Students with Outstanding Balances:</em><br/><br />
+		<ul>
+			<% @students.each do |student| %>
+				<li><%= link_to student.name, student_path(student) %></li>
+			<% end %>
+		</ul>
+	</div>
+</div>

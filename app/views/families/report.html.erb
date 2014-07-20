@@ -1,0 +1,12 @@
+<h2>Payment Report for <%= @family.family_name %> Family</h2>
+
+<% unless @years.empty? %>
+	<p>Select a year:</p>
+	<% @years.each do |y| %>
+		<%= link_to (family_yearly_report_path(@family, y)), class: 'button tiny radius' do %>
+	        &nbsp;<%= y %>
+	    <% end %><br /><br />
+	<% end %>
+<% else %>
+	<p>Family has no registrations.</p>
+<% end %>

@@ -1,0 +1,7 @@
+<li class="has-dropdown">
+  <%= link_to "#{model_name.capitalize.pluralize}", eval("#{model_name.pluralize}_path") %>
+  <ul class="dropdown">
+    <li><%= link_to "List #{model_name.capitalize.pluralize}", eval("#{model_name.pluralize}_path") %></li>
+    <li><%= link_to "Add a #{model_name.capitalize}", eval("new_#{model_name}_path") %></li>
+  </ul>
+</li>

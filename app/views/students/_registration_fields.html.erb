@@ -1,0 +1,13 @@
+<div class="fields">
+	<div class="dynamic_add">
+	  <%= f.link_to_remove do %>
+	  	<i class="fa fa-times-circle fa-lg close_button"></i>
+	  <% end %>
+
+	  <h4>Register for a Camp</h4>
+	 
+	  <%= f.input :camp_id, label: "Camp", collection: Curriculum.for_rating(@student.rating).map{|c| c.camps.upcoming.chronological}.flatten.to_a, label_method: lambda{ |c| c.name + " :: " + c.start_date.strftime('%m/%d/%y') + " :: " + c.time_slot.upcase}, prompt: "Select camp..." %>
+      <%= f.input :payment_status, collection: %w[deposit full], prompt: "Select payment..." %>
+      <%= f.input :points_earned if action=="edit" || action=="update" %>
+	</div>
+</div>

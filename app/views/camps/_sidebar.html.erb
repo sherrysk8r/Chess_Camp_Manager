@@ -1,0 +1,8 @@
+<div>
+  <%= render partial: "camp_instructors" %>
+</div>
+
+<div class="panel clearfix", id="map">
+  <h5>Map</h5>
+  <%= render partial: "partials/map", locals: {latitude: @location.latitude, longitude: @location.longitude, name: @location.name} %>
+</div>

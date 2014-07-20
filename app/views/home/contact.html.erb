@@ -1,0 +1,28 @@
+<div class="row" >
+  <%= image_tag 'SeanHat.jpg', id: "seanhat" %>
+  <div class="small-12 columns">
+    <h2>Contact A &amp; M Chess Camps</h2>
+
+    <p>Actually, these camps, and all associated pieces of information are fake information that were generated as part of application built for for a course at Carnegie Mellon University called 67-272: Application Design and Development. However, this idea was inspired by the professor's passion for chess, and the information about his kids is actually true (just maybe not the emails). If you are in the Pittsburgh area and are interested in learning chess, Professor Heimann does teach on the side. Feel free to contact him at the information below:</p>
+
+    <table cellpadding="3" class="table">
+      <tr>
+        <td>Webmaster:&nbsp;&nbsp;&nbsp;</td>
+        <td>Professor Larry Heimann</td>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td>
+        <%= mail_to("profh@cmu.edu", "Prof. H", encode: "javascript") %> 
+        </td>
+      </tr>
+      <tr>
+        <td>Phone:</td>
+        <td>412-268-8211</td>
+      </tr>
+    </table>
+
+    <p>If you have any questions about the building of this application, or the assignment, send your questions to Professor Heimann as well.</p>
+  </div>
+
+</div>

@@ -1,0 +1,57 @@
+<h3>Camp Details</h3><br />
+<strong>Name:&nbsp;&nbsp;</strong> 
+  <%= link_to camp.name, camp_path(camp) %><br /><br />
+
+
+<strong>Instructors:</strong>
+<% unless camp.instructors.empty? %>
+	<p>
+		<% camp.instructors.each do |instructor| %>
+			<%= link_to instructor.proper_name, instructor_path(instructor)%>
+			<% unless instructor == camp.instructors.last %>,
+			<% end %>
+		<% end %>
+	</p>
+<% else %>
+	<p>No instructors assigned yet.</p>
+<% end %>
+<%= link_to "Add an Instructor to Camp", edit_camp_path(camp), class: "button tiny radius" %><br /><br />
+
+<strong>Registrations:</strong>
+<% unless camp.registrations.empty? %>
+	<table class="table">
+		<th width="200">Student Name</th>
+		<th width="150">Payment Status</th>
+		<th width="100">Points Earned</th>
+		<th></th>
+
+		<% camp.registrations.each do |registration| %>
+		<tr>
+		  <td align="center"><%= link_to registration.student.proper_name, student_path(registration.student) %></td>
+		  <td align="center">
+		  	<% if registration.payment_status == "deposit" %> 
+	          <%= link_to edit_student_path(id: registration.id, status: "paid", from: "home") do %>
+	            <%= image_tag 'checkmark_empty.png', class: 'checkmark' %>
+	          <% end %>
+	        <% else %>
+	          <%= image_tag "checkmark_filled.png", class: "checkmark" %>
+	        <% end %>
+		  </td> 
+		  <td align="center"><%= registration.points_earned %></td>
+		  <td><%= link_to 'Edit', edit_student_path(registration.student), class: "button tiny radius" %></td>
+		</tr>
+		<% end %>
+	</table>
+
+<% else %>
+	<p>No students registered yet.</p>
+<% end %>	
+
+<% if current_user.role? :admin %>
+  <br/><p>
+    <%= link_to (camp_report_path(camp)), class: 'button tiny radius' do %>
+        <i class="fa fa-file-text"></i>
+        &nbsp;Camp Payment Report
+    <% end %>
+  </p>
+<% end %>

@@ -1,0 +1,29 @@
+<% unless camps.empty? %>
+  <h3><%= status %> Camps</h3>
+
+  <table class="table">
+    <tr>
+      <th width="200">Name</th>
+      <th width="120">Start On</th>
+      <th width="120">Time</th>
+      <th></th>
+      <th></th>
+    </tr>
+
+  <% camps.each do |camp| %>
+    <tr>
+      <td><%= link_to camp.name, camp_path(camp) %></td>
+      <td align="center"><%= camp.start_date.strftime('%m/%d/%y') %></td>
+      <td align="center"><%= camp.time_slot == "am" ? "Morning" : "Afternoon" %></td>
+      <% if can? :edit, camp %>
+        <td><%= link_to 'Edit', edit_camp_path(camp), class: "button tiny radius" %></td>
+      <% end %>
+      <% if logged_in? && (current_user.role? :admin) %>
+        <td><%= link_to 'Generate Report', camp_report_path(camp), class: "button tiny radius" %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </table>
+
+  <%= render partial: "partials/add_pagination", locals: {objects: camps} %>
+<% end %>

@@ -1,0 +1,25 @@
+<%= simple_nested_form_for(@instructor, html: { class: 'form-horizontal' }) do |instructor_form| %>
+   <% if can? :edit, @instructor %>
+   <div class="row"> 
+     <div class="small-6 columns">
+       <h3><%= controller.action_name.capitalize %> Instructor</h3>
+       <%= render partial: "instructor_fields", locals: { f: instructor_form } %>
+       
+
+       <div class="form-actions">
+         <%= instructor_form.submit nil, class: 'button radius' %>
+         <%= link_to 'Back to list of instructors', instructors_path, class:  'button secondary radius' %>
+       </div>
+     </div>
+     <% end %>
+     <div class="small-1 columns">&nbsp;</div>
+      
+     <div class="small-5 columns">
+       <h3><%= controller.action_name.capitalize %> Account</h3>
+       <%= instructor_form.simple_fields_for :user do |user_form| %>
+          <%= render partial: "user_fields", locals: { f: user_form, action: controller.action_name, instructor: @instructor} %>
+       <% end %>
+     </div>
+   </div>
+    
+<% end %>

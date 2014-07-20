@@ -1,0 +1,34 @@
+<div class="profile_pic">
+	<% unless @instructor.picture.blank? %>
+	  <img src=<%= @instructor.picture %>>
+	<% else %>
+	  <%= image_tag 'default_profile.jpg' %>
+	<% end %>
+</div>
+
+<h3>Instructor Details</h3><br />
+
+<strong>Name:&nbsp;&nbsp;</strong> 
+  <%= @instructor.proper_name %><br /><br />
+
+<% if logged_in? %>
+	<strong>Phone:&nbsp;&nbsp;</strong> 
+	  <%= number_to_phone(@instructor.phone) %><br /><br />
+
+	<strong>Email:&nbsp;&nbsp;</strong> 
+	  <%= mail_to @instructor.email, @instructor.email, encode: "javascript" %><br /><br />
+
+	<% if current_user.role? :admin %>
+	<strong>Active?&nbsp;&nbsp;</strong>
+	  <%= @instructor.active ? "Yes" : "No" %><br /><br />
+	<% end %>
+
+<% end %>
+
+<strong>Biography</strong><br />
+  <%= @instructor.bio.nil? ? "N/A" : @instructor.bio %><br /><br />
+
+<br /><br />
+<% unless only_edit %>
+	<%= render partial: "partials/object_options", locals: {model_name: "instructor", object: @instructor, can_destroy: false} %>
+<% end %>

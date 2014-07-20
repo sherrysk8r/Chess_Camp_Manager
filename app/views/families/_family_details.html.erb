@@ -1,0 +1,26 @@
+<h3>Family Details</h3><br />
+<strong>Family Name:&nbsp;&nbsp;</strong> 
+  <%= @family.family_name %> <br /><br />
+
+<strong>Parent First Name:&nbsp;&nbsp;</strong> 
+  <%= @family.parent_first_name %><br /><br />
+
+<strong>Phone:&nbsp;&nbsp;</strong> 
+  <%= number_to_phone(@family.phone) %><br /><br />
+
+<strong>Email:&nbsp;&nbsp;</strong> 
+  <%= mail_to @family.email, @family.email, encode: "javascript" %><br /><br />
+
+<strong>Active?&nbsp;&nbsp;</strong>
+  <%= @family.active ? "Yes" : "No" %><br /><br />
+
+<% if current_user.role? :admin %>
+  <br/><p>
+    <%= link_to (family_report_path(@family)), class: 'button tiny radius' do %>
+        <i class="fa fa-file-text"></i>
+        &nbsp;Family Payment Report
+    <% end %>
+  </p>
+<% end %>
+
+<%= render partial: "partials/object_options", locals: {model_name: "family", object: @family, can_destroy: false} %>

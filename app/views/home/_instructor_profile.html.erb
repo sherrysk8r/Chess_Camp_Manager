@@ -1,0 +1,4 @@
+<div class="instructor_profile">
+	<%= render partial: "instructors/instructor_details", locals: {only_edit: true} %>
+	<%= link_to "Edit Profile", edit_instructor_path(@instructor), class: 'button tiny radius' %>
+</div>

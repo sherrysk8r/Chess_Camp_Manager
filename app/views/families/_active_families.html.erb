@@ -1,0 +1,29 @@
+<h3>Active Families</h3>
+
+<table class="table">
+  <tr>
+    <th width="150">Family Name</th>
+    <th width="100">Parent</th>
+    <th width="200">Phone</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @active_families.each do |family| %>
+  <tr>
+    <td align="center"><%= link_to family.family_name, family_path(family) %></td>
+    <td align="center"><%= family.parent_first_name %></td>
+    <td align="center"><%= number_to_phone family.phone %></td>
+    <td><%= link_to 'Edit', edit_family_path(family), class: "button tiny radius" %></td>
+    <td>
+      <% if current_user.role? :admin %>
+        <%= link_to (family_report_path(family)), class: 'button tiny radius' do %>
+            Generate Report
+        <% end %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%= render partial: "partials/add_pagination", locals: {objects: @active_families} %>

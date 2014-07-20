@@ -1,0 +1,29 @@
+<% opt = "#{object.respond_to?(:name) ? object.name : model_name.capitalize }" %>
+
+<div class="form-actions">
+  
+  <% if can? :index, eval(":#{model_name}") %>
+    <%= link_to(eval("#{model_name.pluralize}_path"), class: 'button tiny radius') do %>
+      <i class="fa fa-list"></i>
+      &nbsp;Display All <%= model_name.pluralize.capitalize %>
+    <% end %>
+    &nbsp;&nbsp;
+  <% end %>
+
+  <% if (can? :edit, eval(":#{model_name}")) || (can? :edit, @instructor) %>
+    <%= link_to(eval("edit_#{model_name}_path(object)"), class: 'button tiny radius') do %>
+      <i class="fa fa-pencil"></i>
+      &nbsp;<%= "Update #{opt}" %>
+    <% end %>
+    &nbsp;&nbsp;
+  <% end %>
+
+  <% if can? :destroy, eval(":#{model_name}") %>
+    <% if can_destroy %>
+      <%= link_to(eval("#{model_name}_path(object)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{opt}"}, class: 'button tiny radius alert') do %>
+        <i class="fa fa-trash-o"></i>
+        &nbsp;<%= "Delete #{opt}" %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

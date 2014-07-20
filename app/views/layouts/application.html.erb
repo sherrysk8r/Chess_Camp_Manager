@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "A&M Chess Camps" %></title>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%# javascript_include_tag "application" %> 
+    <%= csrf_meta_tags %>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <%= render partial: "partials/nav" %>
+
+    <div class="row">
+      <div class="small-12 columns" id="main_content">
+        <%= render partial: "partials/flash" %>
+        <%= yield %>
+      </div>
+    </div>
+    <footer>
+      <div class="row">
+        <div class="small-12 columns" id="footer">
+          <%= render partial: 'partials/footer' %>
+        </div>
+      </div> 
+    </footer> 
+    <%= javascript_include_tag "application" %>
+  </body>
+</html>

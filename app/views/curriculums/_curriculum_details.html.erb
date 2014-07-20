@@ -1,0 +1,15 @@
+<h3>Curriculum Details</h3><br />
+<strong>Name:&nbsp;&nbsp;</strong> 
+  <%= @curriculum.name %><br /><br />
+
+<strong>Description:&nbsp;&nbsp;</strong><br /> 
+  <%= @curriculum.description %><br /><br />
+
+<strong>Ratings Range:&nbsp;&nbsp;</strong> 
+  <%= @curriculum.min_rating.zero? ? "Unrated" : @curriculum.min_rating %> - <%= @curriculum.max_rating %><br /><br />
+
+<strong>Active?&nbsp;&nbsp;</strong>
+  <%= @curriculum.active ? "Yes" : "No" %><br /><br />
+
+
+<%= render partial: "partials/object_options", locals: {model_name: "curriculum", object: @curriculum, can_destroy: false} %>

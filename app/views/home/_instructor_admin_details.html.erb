@@ -1,0 +1,27 @@
+<!-- Ideally, would want this in controller. Sorry for the hackiness... -->
+<h3><%= instructor.proper_name %></h3>
+
+<strong>Upcoming Camps:</strong><br /><br />
+<% camps = instructor.camps %>
+<% months = camps.chronological.upcoming.map{|c| c.start_date.strftime('%B')}.uniq %>
+<% curriculums = camps.alphabetical.map {|c| c.name }.uniq.compact %>
+
+<% months.each do |m| %>
+	<% subcamps = camps.upcoming.map { |c| c if c.start_date.to_date.strftime('%B') == m }.compact %>
+	<% unless subcamps.nil? %>
+		<em><%= m %></em><br />
+		<ul>
+			<% subcamps.each do |c| %>
+				<% time = c.time_slot == "am" ? "Morning" : "Afternoon" %>
+				<li><%= link_to "#{c.name + ", " + c.start_date.strftime("%m/%d/%y") + ", " + time }", camp_path(c) %></li>
+			<% end %>
+		</ul>
+	<% end %>
+<% end %>
+
+<strong>Experience With Following Curriculums:</strong><br /><br />
+<ul>
+	<% curriculums.each do |c| %>
+		<li><%= c %></li>
+	<% end %>
+</ul>

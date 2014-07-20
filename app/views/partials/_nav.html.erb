@@ -1,0 +1,45 @@
+  <div class="contain-to-grid">
+    <nav class="top-bar" data-topbar>
+      <ul class="title-area">
+        <li class="name" id="logo">
+          <%= link_to image_tag('amcc_logo.png'), home_path %>
+        </li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="left">
+          <% if logged_in? && (current_user.role? :admin) %>
+              <%= render partial: "partials/nav_item", locals: {model_name: "curriculum"} %>
+              <%= render partial: "partials/nav_item", locals: {model_name: "camp"} %>
+              <%= render partial: "partials/nav_item", locals: {model_name: "location"} %>
+              <%= render partial: "partials/nav_item", locals: {model_name: "instructor"} %>
+              <%= render partial: "partials/nav_item", locals: {model_name: "family"} %>
+              <%= render partial: "partials/nav_item", locals: {model_name: "student"} %>
+          <% else %>
+            <li><%= link_to "List Camps", camps_path %></li>
+          <% end %>
+        </ul>
+       </section>
+       
+       <section class="top-bar-section"> 
+          <div id="container" class="right">
+            <div id="login">
+              <% if logged_in? %>
+                <div id="nav_right"><%= current_user.instructor.proper_name %> : <%= link_to 'Logout', logout_path %></div>
+
+              <% else %>
+
+                <%= form_tag sessions_path do %>
+                  <form>
+                    <div class="login_f"><%= text_field_tag :username, nil, placeholder: "username", id:"username" %></div>
+                    <div class="login_f"><%= password_field_tag :password, nil, placeholder: "password", id:"password" %></div>
+                    <%= submit_tag "Log In", id:"login" %>
+                  </form>
+                <% end %>
+              
+              <% end %>
+            </div>
+          </div>
+        </ul>
+      </section>
+    </nav>
+  </div>

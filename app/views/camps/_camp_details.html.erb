@@ -1,0 +1,57 @@
+<h3>Camp Details</h3><br />
+<strong>Name:&nbsp;&nbsp;</strong> 
+  <% if can? :read, @curriculum %>
+    <%= link_to @camp.name, curriculum_path(@curriculum) %><br /><br />
+  <% else %>
+    <%= @camp.name %><br /><br />
+  <% end %>
+
+<strong>Description:&nbsp;&nbsp;</strong> 
+  <%= @curriculum.description %><br /><br />
+
+<strong>Cost:&nbsp;&nbsp;</strong> 
+  <%= number_to_currency(@camp.cost) %><br /><br />
+
+<strong>Max Students:&nbsp;&nbsp;</strong> 
+  <%= @camp.max_students %><br /><br />
+
+<strong>Rating Range:&nbsp;&nbsp;</strong> 
+  <%= @curriculum.min_rating.zero? ? "Unrated" : @curriculum.min_rating %> - <%= @curriculum.max_rating %><br /><br />
+
+<strong>Dates:&nbsp;&nbsp;</strong> 
+  <%= @camp.start_date.strftime('%m/%d/%y') %> 
+  <% if @camp.start_date != @camp.end_date %>
+    <%= "- #{@camp.end_date.strftime('%m/%d/%y')}" %>
+  <% end %>
+  <br /><br />
+
+<strong>Time:&nbsp;&nbsp;</strong> 
+  <%= @camp.time_slot == "am" ? "Morning" : "Afternoon" %><br /><br />
+
+<strong>Location:&nbsp;&nbsp;</strong> 
+  <% if can? :read, @location %>
+    <%= link_to @location.name, location_path(@location) %><br />
+  <% else %>
+    <%= @location.name %><br />
+  <% end %>
+  <%= @location.street_1 %>
+  <% unless @location.street_2.nil? %>
+    <br /><%= @location.street_2 %>
+  <% end %>
+  <br /><%= @location.city %>, <%= @location.state %> <%= @location.zip %><br /><br />
+
+<strong>Active?&nbsp;&nbsp;</strong>
+  <%= @camp.active ? "Yes" : "No" %><br /><br />
+
+<div id="registered_students">
+  <%= render partial: "list_of_registered_students" %>
+</div>
+
+<% if logged_in? && (current_user.role? :admin) %>
+  <br/><p>
+    <%= link_to (camp_report_path(@camp)), class: 'button tiny radius' do %>
+        <i class="fa fa-file-text"></i>
+        &nbsp;Camp Payment Report
+    <% end %>
+  </p>
+<% end %>

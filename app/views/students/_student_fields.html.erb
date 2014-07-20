@@ -1,0 +1,6 @@
+<%= f.input :first_name %>
+<%= f.input :last_name %>
+<%= f.input :family_id, collection: Family.active.alphabetical, label_method: lambda{|f| f.family_name + " Family"}, prompt: "Select family..." %>
+<%= f.input :date_of_birth, as: :string, label: "Date of Birth", input_html: {class: "datepicker"} %> 
+<%= f.input :rating %>
+<%= f.input :active %>

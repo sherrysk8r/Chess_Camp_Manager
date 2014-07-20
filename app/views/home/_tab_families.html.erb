@@ -1,0 +1,27 @@
+<dl class="tabs vertical" data-tab>
+  <% i = 1 %>
+  <% @families.each do |family| %>
+  	<% if i == 1 %>
+  		<dd class="active"><a href="#family1a"><%= family.family_name %> Family</a></dd>
+  	<% else %>
+  		<dd><a href="#family<%= i.to_s %>a"><%= family.family_name %> Famiy</a></dd>
+  	<% end %>
+  	<% i=i+1 %>
+  <% end %>
+  <div class="vertical_tabs_pagination"> <%= render partial: "partials/add_pagination", locals: {objects: @families, name: "fpage"} %></div>
+
+</dl>
+
+<div class="tabs-content vertical">
+  <% i = 1 %>
+  <% @families.each do |family| %>
+  	<% if i == 1 %>
+  		<div class="content active" id="family1a">
+  	<% else %>
+		<div class="content" id="family<%=i.to_s %>a" >
+  	<% end %>
+		  <%= render partial: "family_admin_details", locals: {family: family} %>
+		</div>
+  	<% i = i + 1 %>
+  <% end %>
+</div>

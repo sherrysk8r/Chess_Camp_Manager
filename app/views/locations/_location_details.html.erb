@@ -1,0 +1,22 @@
+<h3>Location Details</h3><br />
+<strong>Name:&nbsp;&nbsp;</strong> 
+  <%= @location.name %><br /><br />
+
+<strong>Address:&nbsp;&nbsp;</strong><br />
+  <%= @location.street_1 %>
+  <% unless @location.street_2.nil? %>
+  	<br /><%= @location.street_2 %>
+  <% end %>
+  <br /><%= @location.city %>, <%= @location.state %> <%= @location.zip %><br /><br />
+
+<strong>Max Capacity:&nbsp;&nbsp;</strong> 
+  <%= @location.max_capacity %><br /><br />
+
+<strong>Active?&nbsp;&nbsp;</strong>
+  <%= @location.active ? "Yes" : "No" %><br /><br />
+
+<% if @location.camps.size.zero? %>
+	<%= render partial: "partials/object_options", locals: {model_name: "location", object: @location, can_destroy: true} %>
+<% else %>
+	<%= render partial: "partials/object_options", locals: {model_name: "location", object: @location, can_destroy: false} %>
+<% end %>

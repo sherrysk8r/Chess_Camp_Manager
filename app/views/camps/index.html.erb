@@ -1,0 +1,6 @@
+<%= render partial: "partials/index_structure", locals: {model_name: "camp", 
+                                                         primary: "camps", 
+                                                         primary_locals: {status: "Upcoming", camps: @upcoming_camps},
+                                                         secondary: "camps", 
+                                                         secondary_locals: {status: "Past", camps: @past_camps},
+                                                         sidebar: "inactive_camps"} %>

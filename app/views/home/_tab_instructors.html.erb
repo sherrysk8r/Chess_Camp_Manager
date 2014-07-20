@@ -1,0 +1,37 @@
+<dl class="tabs vertical" data-tab>
+  <% i = 1 %>
+  <% @instructors.each do |instructor| %>
+  	<% if i == 1 %>
+  		<dd class="active"><a href="#instructor1a">
+        <%= instructor.name %>
+        <% if instructor.camps.size.zero? || instructor.camps.size > 10 %>
+          <i class="fa fa-exclamation-triangle fa-lg"></i>
+        <% end %>
+      </a></dd>
+  	<% else %>
+  		<dd><a href="#instructor<%= i.to_s %>a">
+        <%= instructor.name %>
+        <% if instructor.camps.size < 2 || instructor.camps.size > 10 %>
+          <i class="fa fa-exclamation-triangle fa-lg"></i>
+        <% end %>
+      </a></dd>
+  	<% end %>
+  	<% i=i+1 %>
+  <% end %>
+  <div class="vertical_tabs_pagination"> <%= render partial: "partials/add_pagination", locals: {objects: @instructors, name: "ipage" } %></div>
+
+</dl>
+
+<div class="tabs-content vertical">
+  <% i = 1 %>
+  <% @instructors.each do |instructor| %>
+  	<% if i == 1 %>
+  		<div class="content active" id="instructor1a">
+  	<% else %>
+		<div class="content" id="instructor<%=i.to_s %>a" >
+  	<% end %>
+		  <%= render partial: "instructor_admin_details", locals: {instructor: instructor} %>
+		</div>
+  	<% i = i + 1 %>
+  <% end %>
+</div>

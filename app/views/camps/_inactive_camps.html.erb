@@ -1,0 +1,3 @@
+<% if logged_in? && (current_user.role? :admin) %>
+	<%= render partial: "partials/inactive_objects", locals: {model_name: "camp", objects: @inactive_camps}  %>
+<% end %>

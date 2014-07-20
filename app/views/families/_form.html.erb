@@ -1,0 +1,26 @@
+<%= simple_nested_form_for(@family, html: { class: 'form-horizontal' }) do |family_form| %>
+   <div class="row"> 
+     <div class="small-6 columns">
+       <h3><%= controller.action_name.capitalize %> Family</h3>
+       <%= render partial: "family_fields", locals: { f: family_form } %>
+       
+
+       <div class="form-actions">
+         <%= family_form.submit nil, class: 'button radius' %>
+         <%= link_to 'Back to list of families', families_path, class:  'button secondary radius' %>
+       </div>
+     </div>
+
+     <div class="small-1 columns">&nbsp;</div>
+      
+     <div class="small-5 columns">
+       <% if controller.action_name == "edit" %>
+         <%= family_form.simple_fields_for :students do |student_form| %>
+            <%= render partial: "student_fields", locals: { f: student_form } %>
+         <% end %>
+         <%= family_form.link_to_add("Add Student", :students, class: 'button tiny') %>
+        <% end %>
+     </div>
+   </div>
+    
+<% end %>

@@ -1,0 +1,7 @@
+<span class="paginate">
+	<% if defined?(name).nil?%>
+		<% name = "page"%> 
+	<% end %>
+	<%= will_paginate objects, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next", param_name: name %>
+	<br />
+</span>

@@ -1,0 +1,8 @@
+<%= f.input :first_name %>
+<%= f.input :last_name %>
+<%= f.input :phone, as: :string %>
+<%= f.input :email %>
+<%= f.label :picture %><br />
+<%= f.file_field :picture %>
+<%= f.input :active %>
+<%= f.input :bio, input_html: { rows: 6 } %>

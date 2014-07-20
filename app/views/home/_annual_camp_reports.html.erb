@@ -1,0 +1,10 @@
+<% unless @years.empty? %>
+	<h4>Select a Year to Generate a Report For:</h4>
+	<% @years.each do |y| %>
+		<%= link_to annual_report_path(y), class: 'button radius' do %>
+	        &nbsp;<%= y %>
+	    <% end %><br /><br />
+	<% end %>
+<% else %>
+	<p>There are no annual reports.</p>
+<% end %>

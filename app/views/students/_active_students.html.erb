@@ -1,0 +1,23 @@
+<h3>Active Students</h3>
+
+<table class="table">
+  <tr>
+    <th width="150">Name</th>
+    <th width="100">Age</th>
+    <th width="150">Rating</th>
+    <th width="100">Camps Registered</th>
+    <th></th>
+  </tr>
+
+<% @active_students.each do |student| %>
+  <tr>
+    <td><%= link_to student.name, student_path(student) %></td>
+    <td align="center"><%= student.age %></td>  
+    <td align="center"><%= student.rating.zero? ? "Unrated" : student.rating %></td>
+    <td align="center"><%= student.camps.size %></td>
+    <td><%= link_to 'Edit', edit_student_path(student), class: "button tiny radius" %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= render partial: "partials/add_pagination", locals: {objects: @active_students} %>

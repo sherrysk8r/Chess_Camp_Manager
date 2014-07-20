@@ -1,0 +1,37 @@
+<dl class="tabs vertical" data-tab>
+  <% i = 1 %>
+  <% camps.each do |camp| %>
+  	<% if i == 1 %>
+  		<dd class="active"><a href="#camp1a">
+        <%= camp.name %> :: <%= camp.start_date.strftime('%m/%d/%y') %>
+        <% if camp.registrations.size < 3 || camp.instructors.size.zero? || camp.registrations.size.to_i/camp.instructors.size.to_i > 4 %>
+          <i class="fa fa-exclamation-triangle fa-lg"></i>
+        <% end %>
+      </a></dd>
+  	<% else %>
+  		<dd><a href="#camp<%= i.to_s %>a">
+        <%= camp.name %> :: <%= camp.start_date.strftime('%m/%d/%y') %>
+        <% if camp.registrations.size < 3 || camp.instructors.size.zero? || camp.registrations.size.to_i/camp.instructors.size.to_i > 4 %>
+          <i class="fa fa-exclamation-triangle fa-lg"></i>
+        <% end %>
+      </a></dd>
+  	<% end %>
+  	<% i=i+1 %>
+  <% end %>
+  <div class="vertical_tabs_pagination"> <%= render partial: "partials/add_pagination", locals: {objects: camps, name: "ucpage" } %></div>
+
+</dl>
+
+<div class="tabs-content vertical">
+  <% i = 1 %>
+  <% camps.each do |camp| %>
+  	<% if i == 1 %>
+  		<div class="content active" id="camp1a">
+  	<% else %>
+		<div class="content" id="camp<%=i.to_s %>a" >
+  	<% end %>
+		  <%= render partial: "camp_admin_details", locals: {camp: camp} %>
+		</div>
+  	<% i = i + 1 %>
+  <% end %>
+</div>

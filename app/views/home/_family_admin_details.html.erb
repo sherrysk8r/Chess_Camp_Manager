@@ -1,0 +1,27 @@
+<h4><%= family.family_name %> Family</h4>
+<strong>Contact:&nbsp;&nbsp;</strong> 
+  <%= family.parent_first_name + " " + family.family_name %><br /><br />
+
+<strong>Phone:&nbsp;&nbsp;</strong> 
+  <%= number_to_phone(family.phone) %><br /><br />
+
+<strong>Email:&nbsp;&nbsp;</strong> 
+  <%= mail_to family.email, family.email, encode: "javascript" %><br /><br />
+
+<strong>Active?&nbsp;&nbsp;</strong>
+  <%= family.active ? "Yes" : "No" %><br /><br />
+
+
+<strong>Annual Reports:&nbsp;&nbsp;</strong>
+<% @fyears = family.students.map{ |s| s.camps}.flatten.to_a.map{|c| c.start_date.year}.uniq %>
+
+<% unless @fyears.empty? %>
+	<p>Select a year:</p>
+	<% @fyears.each do |y| %>
+		<%= link_to (family_yearly_report_path(family, y)), class: 'button small radius' do %>
+	        &nbsp;<%= y %>
+	    <% end %><br /><br />
+	<% end %>
+<% else %>
+	<p>Family has no registrations yet.</p>
+<% end %>

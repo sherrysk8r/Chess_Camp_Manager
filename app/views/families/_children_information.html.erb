@@ -1,0 +1,10 @@
+<% unless @children.empty? %>
+  <div class="panel clearfix">
+    <h5>Children</h5>
+    <ul class="side-nav">
+      <% @children.each do |child| %>
+        <li><%= link_to child.proper_name, eval("student_path(child)") %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

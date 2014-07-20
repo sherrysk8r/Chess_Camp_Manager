@@ -1,0 +1,31 @@
+<div class="row">
+	<dl class="tabs" data-tab >
+	  <dd class="active"><%= link_to "Upcoming Camps", home_path(anchor: "admin-1") %></dd>
+	  <dd><%= link_to "Families", home_path(anchor: "admin-2") %></dd>
+	  <dd><%= link_to "Instructors", home_path(anchor: "admin-3") %></dd>
+	  <dd><%= link_to "Annual Camp Reports", home_path(anchor: "admin-4") %></dd>
+	  <dd><%= link_to "My Camps", home_path(anchor: "admin-5") %></dd>
+	  <dd><%= link_to "My Profile", home_path(anchor: "admin-6") %></dd>
+	</dl>
+	<div class="tabs-content">
+	  <div class="content active" id="admin-1">
+	    <%= render partial: "tab_camps", locals: {camps: @upcoming_camps} %>
+	  </div>
+	  <div class="content" id="admin-2">
+	    <%= render partial: "tab_families" %>
+	  </div>
+	  <div class="content" id="admin-3">
+	  	<%= render partial: "tab_instructors" %>
+	  </div>
+	  <div class="content" id="admin-4">
+	    <%= render partial: "annual_camp_reports" %>
+	  </div>
+	  <div class="content" id="admin-5">
+	    <%= render partial: "camps_instructing" %>
+	  </div>
+	  <div class="content" id="admin-6">
+	    <%= render partial: "instructor_profile" %>
+	  </div>
+	</div>
+</div>
+

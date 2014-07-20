@@ -1,0 +1,55 @@
+<% unless @registered_students.empty? %>
+  <div>
+    <strong>Registrations (<%= @registered_students.size %>)
+    </strong>
+
+    <% if logged_in? %>
+      <table class="table">
+        <th>Student Name</th>
+        <th>Rating</th>
+        <% if current_user.role? :admin %>
+          <th>Payment Status</th>
+        <% end %>
+        <th>Points Earned</th>
+        <th></th>
+
+        <% @registrations.each do |registration| %>
+        <tr>
+          <td align="center">
+            <% if can? :show, registration.student %>
+
+              <%= link_to registration.student.proper_name, student_path(registration.student) %>
+            <% else %>
+              <%= registration.student.proper_name %>
+            <% end %>
+          </td>
+          <td><%= registration.student.rating %></td>
+          <% if current_user.role? :admin %>
+            <td align="center">
+              <% if registration.payment_status == "deposit" %> 
+                <%= link_to edit_student_path(id: registration.id, status: "paid", from: "camp") do %>
+                  <%= image_tag 'checkmark_empty.png', class: 'checkmark' %>
+                <% end %>
+              <% else %>
+                <%= image_tag "checkmark_filled.png", class: "checkmark" %>
+              <% end %>
+            </td> 
+          <% end %>
+          <td align="center"><%= registration.points_earned %></td>
+          <% if can? :edit, registration.student %>
+            <td><%= link_to 'Edit', edit_student_path(registration.student), class: "button tiny radius" %></td>
+          <% end %>
+        </tr>
+        <% end %>
+      </table>
+    <% else %>
+      <ul>
+        <% @registered_students.each do |student| %>
+          <li><%= student.name + " (" + student.age.to_s + ")" %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+<% else %>
+  <p>No registered students yet.</p>
+<% end %>

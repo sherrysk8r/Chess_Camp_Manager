@@ -1,0 +1,23 @@
+#67-272 Chess Camp Manager #
+
+Over the semester, I independently wrote this application over five phases. The background scenario is Alex and Mark Heimann are running a series of chess camps this summer and need a system to manage this. This means the curriculums being used, instructors teaching, locations being used, families (as emergency contact information) and students who will be registered, as well as the camps themselves. 
+
+Anyone can visit the application, but what they can view should be limited on who they are. Parents of potential chess students can only see upcoming camps, and details concerning those camps. Instructors have slightly more priverage than that, and are able to view the page of students that are registered in camps they are teaching. They are further able to edit their own profile. Administrators have access to everything.
+
+##Tools##
+
+This application was created using MVC architecture and ruby on rails. The database was done with sqlite, and the css was mostly manipulating foundation.
+
+
+##What I Learned##
+
+I obviously learned a lot about good database design, how to properly use MVC (like putting all my business logic in the models and not letting the views do too much work), but I also learned about how to design the application for good user experience and organize information as so. I learned how to use external APIs and work with existing ruby gems. I did a lot of refactoring code towards the end, though there is still much more that can be done.
+
+
+##How It Can Be Better##
+
+- I should have made a registrations controller, and put student registrations somewhere else rather than when editting a student. The way it is currently done forces all the lists of available camps for a specific student to also contain the camps they are currently registered for.
+
+- I would also want to add a search functionality so that the application scales better.
+
+- On the application homepage (if logged in as an administator), I would like to return to the specific tab the administrator was on after clicking a different paginated page.
