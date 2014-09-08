@@ -2,7 +2,7 @@
 
 Over the semester, I independently wrote this application over five phases. The background scenario is Alex and Mark Heimann are running a series of chess camps this summer and need a system to manage this. This means the curriculums being used, instructors teaching, locations being used, families (as emergency contact information) and students who will be registered, as well as the camps themselves. 
 
-Anyone can visit the application, but what they can view should be limited on who they are. Parents of potential chess students can only see upcoming camps, and details concerning those camps. Instructors have slightly more priverage than that, and are able to view the page of students that are registered in camps they are teaching. They are further able to edit their own profile. Administrators have access to everything.
+Anyone can visit the application, but what they can view should be limited on who they are. Parents of potential chess students can only see upcoming camps, and details concerning those camps. Instructors have slightly more privelage than that, and are able to view the page of students that are registered in camps they are teaching. They are further able to edit their own profile. Administrators have access to everything.
 
 ##Tools##
 
